@@ -8,7 +8,7 @@ const instance = axios.create({
 });
 
 const getTodos = async () => {
-  const response = await instance.get("/todos", {
+  const response = await instance.get("/api/memo", {
     params: {},
   });
   return response.data;
@@ -25,7 +25,7 @@ const deleteTodo = async (id) => {
 };
 
 const updateTodo = async (id, updatedTodo) => {
-  const response = await instance.put(`/todos/${id}`, updatedTodo);
+  const response = await instance.put(`/api/memo/${id}`, updatedTodo);
   return response.data;
 };
 
