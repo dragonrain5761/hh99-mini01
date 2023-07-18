@@ -62,3 +62,18 @@ const Details = ({
 };
 
 export default Details;
+
+const DetailWarpper = styled.div`
+  max-width: 800px;
+  height: 800px;
+  display: flex;
+  margin: auto;
+  text-align: center;
+  justify-content: center;
+  flex-direction: column;
+  background-image: url(${({ img }) => img});
+  background-position: center;
+  background-size: cover;
+  top: 50%;
+  left: 50%;
+`;
