@@ -1,32 +1,81 @@
 import styled from "styled-components";
 import Button from "./common/Button";
 import Selecter from "./common/Selector";
+import { QueryClient, useMutation, useQueryClient } from "react-query";
+import { addTodo } from "../apis/api";
+import { useEffect, useState } from "react";
 
-const Modal = ({
-  modalChecked,
-  onChangeTodosHandler,
-  onClickModalHandler,
-  onClickSubmitHandler,
-  color,
-  date,
-  todo,
-}) => {
+const Modal = () => {
+  const { modalChecked, date, circleColor } = useSelector(
+    (state) => state.modal
+  );
+
+  const [todo, setTodo] = useState({
+    eventName: "",
+    start: "",
+    end: "",
+    date,
+    circleColor,
+  });
+  const onChangeTodosHandler = (e) => {
+    const { name, value } = e.target;
+    let newValue = value;
+    name !== "eventName" && (newValue = value.replace(/\D/g, ""));
+    const newTodo = {
+      ...todo,
+      [name]: newValue,
+    };
+    setTodo(newTodo);
+  };
+
+  useEffect(() => {
+    let newColor = {
+      ...todo,
+      circleColor,
+    };
+    setTodo(newColor);
+  }, [circleColor]);
+  const dispatch = useDispatch();
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation(addTodo, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("todos");
+    },
+  });
+
+  const onClickModalHandler = () => {
+    dispatch(toogleModal());
+  };
+
+  const onClickSubmitHandler = () => {
+    mutation.mutate(todo);
+    dispatch(toogleModal());
+    setTodo({
+      eventName: "",
+      start: "",
+      end: "",
+      date,
+      circleColor: "red",
+    });
+  };
+
   return (
     <>
       {modalChecked && (
         <>
-          <ModalContent $color={color}>
+          <ModalContent $circleColor={circleColor}>
             <span>할 일</span>
             {/* css가 undefined가 뜨는데 왜일까? */}
             <div className="circle" />
             <p className="date">날짜 : {date}</p>
-            <p className="count">{todo.eventname.length}/20</p>
+            <p className="count">{todo.eventName.length}/20</p>
             <InputBox
               type="text"
               maxLength={19}
               width={220}
-              name="eventname"
-              value={todo.eventname}
+              name="eventName"
+              value={todo.eventName}
               onChange={(e) => onChangeTodosHandler(e)}
             />
             <Selecter />
@@ -112,7 +161,7 @@ const ModalContent = styled.div`
     top: 9%;
     width: 20px;
     height: 20px;
-    background-color: ${(props) => props.$color};
+    background-color: ${(props) => props.$circleColor};
     border-radius: 100%;
     border: 1px solid black;
   }

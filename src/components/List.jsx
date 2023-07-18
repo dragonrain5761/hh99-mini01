@@ -9,10 +9,10 @@ const List = ({ filteredData, onClickNavHandler }) => {
         <ListItem
           key={item.id}
           time={item.time}
-          eventname={item.eventname}
+          eventName={item.eventName}
           start={item.start}
           end={item.end}
-          color={item.color}
+          circleColor={item.circleColor}
           todoId={item.id}
           onDelete={handleDelete}
           onClick={() => onClickNavHandler(item.id)}
