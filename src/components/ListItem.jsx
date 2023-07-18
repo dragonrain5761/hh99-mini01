@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const ListItem = ({ start, end, eventName, circleColor, onClick }) => {
   return (
-    <ListItmeBox color={circleColor} onClick={onClick}>
+    <ListItmeBox color={circleColor}>
       <div>{eventName}</div>
       <div>
         {start}시 - {end}시
