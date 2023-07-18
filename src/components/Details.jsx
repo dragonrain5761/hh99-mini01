@@ -3,25 +3,25 @@ import React from "react";
 const Details = ({
   info,
   handleDelete,
-  updatedeventname,
+  updatedEventName,
   updatedStart,
   updatedEnd,
-  updatedcolor,
+  updatedCircleColor,
   onInputChange,
   onClickUpdateHandler,
 }) => {
-  const { eventname, start, end, color } = info;
-  // console.log(eventname);
+  const { eventName, start, end, circleColor } = info;
+  // console.log(eventName);
 
   return (
     <div>
       <h1>Detail Page</h1>
       <div>
-        <p>Event Name: {eventname}</p>
+        <p>Event Name: {eventName}</p>
         <input
           type="text"
-          name="updatedeventname"
-          value={updatedeventname}
+          name="updatedEventName"
+          value={updatedEventName}
           onChange={onInputChange}
         />
         <p>Start Time: {start}시</p>
@@ -42,10 +42,10 @@ const Details = ({
           min="0"
           max="24"
         />
-        <p>Circle Color: {color}</p>
+        <p>Circle Color: {circleColor}</p>
         <select
-          name="updatedcolor"
-          value={updatedcolor}
+          name="updatedCircleColor"
+          value={updatedCircleColor}
           onChange={onInputChange}
         >
           <option value="red">red</option>
