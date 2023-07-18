@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
-const ListItem = ({ start, end, eventname, color, onClick }) => {
+const ListItem = ({ start, end, eventName, circleColor, onClick }) => {
   return (
-    <ListItmeBox color={color} onClick={onClick}>
-      <div>{eventname}</div>
+    <ListItmeBox color={circleColor} onClick={onClick}>
+      <div>{eventName}</div>
       <div>
         {start}시 - {end}시
       </div>

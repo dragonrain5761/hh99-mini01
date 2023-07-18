@@ -15,18 +15,18 @@ const Modal = ({
     <>
       {modalChecked && (
         <>
-          <ModalContent $color={color}>
+          <ModalContent $circleColor={circleColor}>
             <span>할 일</span>
             {/* css가 undefined가 뜨는데 왜일까? */}
             <div className="circle" />
             <p className="date">날짜 : {date}</p>
-            <p className="count">{todo.eventname.length}/20</p>
+            <p className="count">{todo.eventName.length}/20</p>
             <InputBox
               type="text"
               maxLength={19}
               width={220}
-              name="eventname"
-              value={todo.eventname}
+              name="eventName"
+              value={todo.eventName}
               onChange={(e) => onChangeTodosHandler(e)}
             />
             <Selecter />
@@ -112,7 +112,7 @@ const ModalContent = styled.div`
     top: 9%;
     width: 20px;
     height: 20px;
-    background-color: ${(props) => props.$color};
+    background-color: ${(props) => props.$circleColor};
     border-radius: 100%;
     border: 1px solid black;
   }
