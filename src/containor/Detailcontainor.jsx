@@ -62,7 +62,8 @@ function Detailcontainor() {
   useEffect(() => {
     const fetchInfo = async () => {
       const response = await getTodo(id);
-      setInfo(...response);
+
+      setInfo(response);
     };
     fetchInfo();
   }, [id]);
@@ -70,17 +71,7 @@ function Detailcontainor() {
   if (!info) {
     return <div> 아직 로딩중입니다...</div>;
   }
-
-  return (
-    <Details
-      info={info}
-      handleDelete={handleDelete}
-      onInputChange={onInputChange}
-      onClickUpdateHandler={onClickUpdateHandler}
-      detailForm={detailForm}
-      navigate={navigate}
-    ></Details>
-  );
+  return <Details info={info}></Details>;
 }
 
 export default Detailcontainor;

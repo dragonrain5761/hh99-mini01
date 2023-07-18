@@ -1,8 +1,30 @@
-import React from "react";
+import React, { useCallback } from "react";
 import styled from "styled-components";
 import ListItem from "./ListItem";
+import { useNavigate } from "react-router-dom";
+import { useMutation, useQueryClient } from "react-query";
+import { deleteTodo } from "../apis/api";
 
-const List = ({ filteredData, onClickNavHandler }) => {
+const List = ({ filteredData }) => {
+  const queryClient = useQueryClient();
+  // delete함수 실행하고 성공하면 onSuccess하는 것
+  const mutation = useMutation(deleteTodo, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("todos");
+    },
+  });
+  // id 받아서 삭제작업하는 것
+  const handleDelete = useCallback(
+    (id) => {
+      mutation.mutate(id);
+    },
+    [mutation]
+  );
+  const navigate = useNavigate();
+  const onClickNavHandler = (id) => {
+    navigate(`/detail/${id}`);
+  };
+
   return (
     <ListWrapper>
       {filteredData?.map((item) => (
@@ -12,10 +34,11 @@ const List = ({ filteredData, onClickNavHandler }) => {
           eventname={item.eventname}
           start={item.start}
           end={item.end}
-          color={item.color}
+          circleColor={item.circleColor}
           todoId={item.id}
+          onDelete={handleDelete}
           onClick={() => onClickNavHandler(item.id)}
-        />
+        ></ListItem>
       ))}
     </ListWrapper>
   );
