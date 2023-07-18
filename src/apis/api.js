@@ -8,7 +8,9 @@ const instance = axios.create({
 });
 
 const getTodos = async () => {
-  const response = await instance.get("/api/memo");
+  const response = await instance.get("/api/memo", {
+    params: {},
+  });
   return response.data;
 };
 
