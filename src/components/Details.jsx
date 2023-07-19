@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import Detail from "../assets/images/detail.png";
+import Button from "../components/common/Button";
 const Details = ({
   info,
   handleDelete,
-  updatedEventname,
+  updatedeventname,
   updatedStart,
   updatedEnd,
   updatedColor,
@@ -15,15 +16,17 @@ const Details = ({
   return (
     <DetailWarpper img={Detail}>
       <h1>Detail Page</h1>
-      <div>
+      <DetailName>
         <p>Event Name: {eventname}</p>
         <input
           type="text"
-          name="updatedEventname"
-          value={updatedEventname}
+          name="updatedeventname"
+          value={updatedeventname}
           onChange={onInputChange}
         />
-        <p>Start Time: {start}시</p>
+      </DetailName>
+      <DetailTime>
+        <p>Time: </p>
         <input
           type="number"
           name="updatedStart"
@@ -32,7 +35,7 @@ const Details = ({
           min="0"
           max="24"
         />
-        <p>End Time: {end}시</p>
+
         <input
           type="number"
           name="updatedEnd"
@@ -41,10 +44,12 @@ const Details = ({
           min="0"
           max="24"
         />
-        <p>Circle Color: {color}</p>
+      </DetailTime>
+      <DetailColor>
+        <p>Color: {color}</p>
         <select
-          name="updatedColor"
-          value={updatedColor}
+          name="updatedcolor"
+          value={updatedcolor}
           onChange={onInputChange}
         >
           <option value="red">red</option>
@@ -52,10 +57,16 @@ const Details = ({
           <option value="blue">blue</option>
           <option value="violet">violet</option>
         </select>
-      </div>
-      <button onClick={onClickUpdateHandler}>수정</button>
-      &nbsp;
-      <button onClick={handleDelete}>삭제</button>
+      </DetailColor>
+      <ButtonBox>
+        <Button width={100} onClick={onClickUpdateHandler}>
+          수정
+        </Button>
+        &nbsp;
+        <Button width={100} onClick={handleDelete}>
+          삭제
+        </Button>
+      </ButtonBox>
     </DetailWarpper>
   );
 };
@@ -63,16 +74,86 @@ const Details = ({
 export default Details;
 
 const DetailWarpper = styled.div`
-  max-width: 800px;
+  max-width: 60%;
+  min-width: 900px;
   height: 800px;
-  display: flex;
   margin: auto;
-  text-align: center;
-  justify-content: center;
+  display: flex;
+  align-items: center;
   flex-direction: column;
-  background-image: url(${({ img }) => img});
+  background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;
-  top: 50%;
-  left: 50%;
+  background-image: url(${({ img }) => img});
+  padding-top: 142px;
+  > h1 {
+    font-size: 44px;
+  }
+  > * {
+    padding-bottom: 44px;
+  }
+  > * input {
+    border: none;
+    border-bottom: 3px solid black;
+    background-color: transparent;
+    width: 150px;
+    outline: none;
+    font-size: 32px;
+    height: 44px;
+    padding-left: 20px;
+  }
+`;
+
+const DetailName = styled.div`
+  display: flex;
+  flex-direction: row;
+  font-size: 44px;
+  align-items: center;
+  gap: 20px;
+  > p {
+    font-size: 28px;
+  }
+`;
+
+const DetailTime = styled.div`
+  display: flex;
+  flex-direction: row;
+  font-size: 44px;
+  align-items: center;
+
+  gap: 20px;
+  > p {
+    font-size: 28px;
+  }
+  > input {
+    width: 80px;
+    &[type="number"]::-webkit-outer-spin-button,
+    &[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+`;
+
+const DetailColor = styled.div`
+  width: 300px;
+  outline: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  > p {
+    width: 150px;
+    font-size: 28px;
+  }
+  > select {
+    font-size: 20px;
+    height: 44px;
+    width: 200px;
+    background-color: transparent;
+    border: 0px;
+  }
+`;
+
+const ButtonBox = styled.div`
+  gap: 10%;
+  display: flex;
 `;
