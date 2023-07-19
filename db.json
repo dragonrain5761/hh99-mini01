@@ -49,30 +49,6 @@
       "id": 6
     },
     {
-      "eventname": "7월 동안 놀기",
-      "start": "12",
-      "end": "23",
-      "date": "2023-07-13",
-      "color": "blue",
-      "id": 7
-    },
-    {
-      "eventname": "7월 공부 열심히",
-      "start": "4",
-      "end": "23",
-      "date": "2023-07-26",
-      "color": "blue",
-      "id": 10
-    },
-    {
-      "eventname": "7월 동안 공부하기",
-      "start": "12",
-      "end": "23",
-      "date": "2023-07-26",
-      "color": "red",
-      "id": 11
-    },
-    {
       "eventname": "7월 동안 공부하기",
       "start": "11",
       "end": "22",
@@ -81,12 +57,20 @@
       "id": 12
     },
     {
-      "eventname": "제발 좀 되라",
-      "start": "12",
-      "end": "13",
+      "eventname": "asdasdasdd",
+      "start": "2",
+      "end": "4",
       "date": "2023-07-13",
-      "color": "blue",
+      "color": "yellow",
       "id": 13
+    },
+    {
+      "eventname": "asdasds",
+      "start": "11",
+      "end": "23",
+      "date": "2023-07-18",
+      "color": "red",
+      "id": 15
     }
   ]
 }
