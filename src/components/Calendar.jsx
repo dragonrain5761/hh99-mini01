@@ -14,7 +14,7 @@ const Calendar = ({ currentMonth, month, prevMonth, nextMonth }) => {
         <Header>
           <div>
             <CalendarHeader>
-              {format(currentMonth, "yyyy")}년 {format(currentMonth, "M")}월
+              {format(currentMonth, "yyyy")} {format(currentMonth, "M")}월
             </CalendarHeader>
           </div>
           <div>

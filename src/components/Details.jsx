@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Detail from "../assets/images/detail.png";
+import Button from "../components/common/Button";
 const Details = ({
   info,
   handleDelete,
@@ -67,16 +68,86 @@ const Details = ({
 export default Details;
 
 const DetailWarpper = styled.div`
-  max-width: 800px;
+  max-width: 60%;
+  min-width: 900px;
   height: 800px;
-  display: flex;
   margin: auto;
-  text-align: center;
-  justify-content: center;
+  display: flex;
+  align-items: center;
   flex-direction: column;
-  background-image: url(${({ img }) => img});
+  background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;
-  top: 50%;
-  left: 50%;
+  background-image: url(${({ img }) => img});
+  padding-top: 142px;
+  > h1 {
+    font-size: 44px;
+  }
+  > * {
+    padding-bottom: 44px;
+  }
+  > * input {
+    border: none;
+    border-bottom: 3px solid black;
+    background-color: transparent;
+    width: 150px;
+    outline: none;
+    font-size: 32px;
+    height: 44px;
+    padding-left: 20px;
+  }
+`;
+
+const DetailName = styled.div`
+  display: flex;
+  flex-direction: row;
+  font-size: 44px;
+  align-items: center;
+  gap: 20px;
+  > p {
+    font-size: 28px;
+  }
+`;
+
+const DetailTime = styled.div`
+  display: flex;
+  flex-direction: row;
+  font-size: 44px;
+  align-items: center;
+
+  gap: 20px;
+  > p {
+    font-size: 28px;
+  }
+  > input {
+    width: 80px;
+    &[type="number"]::-webkit-outer-spin-button,
+    &[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+`;
+
+const DetailColor = styled.div`
+  width: 300px;
+  outline: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  > p {
+    width: 150px;
+    font-size: 28px;
+  }
+  > select {
+    font-size: 20px;
+    height: 44px;
+    width: 200px;
+    background-color: transparent;
+    border: 0px;
+  }
+`;
+
+const ButtonBox = styled.div`
+  gap: 10%;
+  display: flex;
 `;
