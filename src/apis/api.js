@@ -13,12 +13,12 @@ const getTodos = async () => {
 };
 
 const addTodo = async (newTodo) => {
-  const response = await instance.post("/api/memo", newTodo);
+  const response = await instance.post("/todos", newTodo);
   return response.data;
 };
 
 const deleteTodo = async (id) => {
-  const response = await instance.delete(`/api/memo/${id}`);
+  const response = await instance.delete(`/todos/${id}`);
   return response.data;
 };
 
