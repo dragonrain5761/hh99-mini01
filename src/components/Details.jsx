@@ -4,7 +4,7 @@ import Detail from "../assets/images/detail.png";
 const Details = ({
   info,
   handleDelete,
-  updatedEventname,
+  updatedeventname,
   updatedStart,
   updatedEnd,
   updatedColor,
@@ -13,16 +13,18 @@ const Details = ({
   navigate,
 }) => {
   const { eventname, start, end, color } = info;
-
+  console.log(info);
   return (
     <DetailWarpper img={Detail}>
+      <input type="text" />
+      <textarea type="text" name="inputcontent" maxLength={600} />
       <h1>Detail Page</h1>
       <div>
         <p>Event Name: {eventname}</p>
         <input
           type="text"
-          name="updatedEventname"
-          value={updatedEventname}
+          name="updatedeventname"
+          value={updatedeventname}
           onChange={onInputChange}
         />
         <p>Start Time: {start}시</p>
@@ -43,10 +45,10 @@ const Details = ({
           min="0"
           max="24"
         />
-        <p>Circle Color: {color}</p>
+        <p>Color: {color}</p>
         <select
-          name="updatedColor"
-          value={updatedColor}
+          name="updatedcolor"
+          value={updatedcolor}
           onChange={onInputChange}
         >
           <option value="red">red</option>
@@ -58,7 +60,7 @@ const Details = ({
       <button onClick={onClickUpdateHandler}>수정</button>
       &nbsp;
       <button onClick={handleDelete}>삭제</button>
-    </div>
+    </DetailWarpper>
   );
 };
 
