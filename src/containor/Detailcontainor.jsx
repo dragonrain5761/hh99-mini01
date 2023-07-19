@@ -30,7 +30,7 @@ function Detailcontainor() {
 
   const [updatedStart, setUpdatedStart] = useState("");
   const [updatedEnd, setUpdatedEnd] = useState("");
-  const [updatedcolor, setUpdatedcolor] = useState("");
+  const [updatedColor, setUpdatedColor] = useState("");
 
   const onInputChange = (e) => {
     const name = e.target.name;
