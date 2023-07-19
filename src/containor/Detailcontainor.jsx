@@ -27,13 +27,33 @@ function Detailcontainor() {
     navigate("/");
   };
 
-  const [detailForm, onInputChange] = useInput({
-    updatedeventname: "",
-    updatedStart: "",
-    updatedEnd: "",
-    updatedcolor: "red",
-  });
-  // console.log(detailForm);
+  const [updatedeventname, setUpdatedeventname] = useState("");
+  const [updatedStart, setUpdatedStart] = useState("");
+  const [updatedEnd, setUpdatedEnd] = useState("");
+  const [updatedColor, setUpdatedColor] = useState("");
+
+  const onInputChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+
+    switch (name) {
+      case "updatedeventname":
+        setUpdatedeventname(value);
+        break;
+      case "updatedStart":
+        setUpdatedStart(value);
+        break;
+      case "updatedEnd":
+        setUpdatedEnd(value);
+        break;
+      case "updatedcolor":
+        setUpdatedcolor(value);
+        break;
+      default:
+        break;
+    }
+  };
+
   const onClickUpdateHandler = () => {
     if (
       detailForm.updatedeventname === "" ||
