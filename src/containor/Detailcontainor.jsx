@@ -27,13 +27,33 @@ function Detailcontainor() {
     navigate("/");
   };
 
-  const [detailForm, onInputChange] = useInput({
-    updatedeventname: "",
-    updatedStart: "",
-    updatedEnd: "",
-    updatedcolor: "red",
-  });
-  // console.log(detailForm);
+  const [updatedEventname, setUpdatedEventname] = useState("");
+  const [updatedStart, setUpdatedStart] = useState("");
+  const [updatedEnd, setUpdatedEnd] = useState("");
+  const [updatedColor, setUpdatedColor] = useState("");
+
+  const onInputChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+
+    switch (name) {
+      case "updatedEventname":
+        setUpdatedEventname(value);
+        break;
+      case "updatedStart":
+        setUpdatedStart(value);
+        break;
+      case "updatedEnd":
+        setUpdatedEnd(value);
+        break;
+      case "updatedColor":
+        setUpdatedColor(value);
+        break;
+      default:
+        break;
+    }
+  };
+
   const onClickUpdateHandler = () => {
     if (
       detailForm.updatedeventname === "" ||
@@ -51,10 +71,10 @@ function Detailcontainor() {
 
     const updatedInfo = {
       ...info,
-      eventname: detailForm.updatedeventname,
-      start: detailForm.updatedStart,
-      end: detailForm.updatedEnd,
-      color: detailForm.updatedcolor,
+      eventname: updatedEventname,
+      start: updatedStart,
+      end: updatedEnd,
+      color: updatedColor,
     };
     handleUpdate(updatedInfo);
   };
@@ -71,7 +91,19 @@ function Detailcontainor() {
   if (!info) {
     return <div> 아직 로딩중입니다...</div>;
   }
-  return <Details info={info}></Details>;
+
+  return (
+    <Details
+      info={info}
+      handleDelete={handleDelete}
+      updatedEventname={updatedEventname}
+      updatedStart={updatedStart}
+      updatedEnd={updatedEnd}
+      updatedColor={updatedColor}
+      onInputChange={onInputChange}
+      onClickUpdateHandler={onClickUpdateHandler}
+    ></Details>
+  );
 }
 
 export default Detailcontainor;

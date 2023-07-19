@@ -1,9 +1,63 @@
 import styled from "styled-components";
 import Detail from "../assets/images/detail.png";
-const Details = ({ info }) => {
-  const { eventName, start, end, date, circleColor } = info[0];
+const Details = ({
+  info,
+  handleDelete,
+  updatedEventname,
+  updatedStart,
+  updatedEnd,
+  updatedColor,
+  onInputChange,
+  onClickUpdateHandler,
+}) => {
+  const { eventname, start, end, color } = info;
 
-  return <DetailWarpper img={Detail}></DetailWarpper>;
+  return (
+    <DetailWarpper img={Detail}>
+      <h1>Detail Page</h1>
+      <div>
+        <p>Event Name: {eventname}</p>
+        <input
+          type="text"
+          name="updatedEventname"
+          value={updatedEventname}
+          onChange={onInputChange}
+        />
+        <p>Start Time: {start}시</p>
+        <input
+          type="number"
+          name="updatedStart"
+          value={updatedStart}
+          onChange={onInputChange}
+          min="0"
+          max="24"
+        />
+        <p>End Time: {end}시</p>
+        <input
+          type="number"
+          name="updatedEnd"
+          value={updatedEnd}
+          onChange={onInputChange}
+          min="0"
+          max="24"
+        />
+        <p>Circle Color: {color}</p>
+        <select
+          name="updatedColor"
+          value={updatedColor}
+          onChange={onInputChange}
+        >
+          <option value="red">red</option>
+          <option value="yellow">yellow</option>
+          <option value="blue">blue</option>
+          <option value="violet">violet</option>
+        </select>
+      </div>
+      <button onClick={onClickUpdateHandler}>수정</button>
+      &nbsp;
+      <button onClick={handleDelete}>삭제</button>
+    </DetailWarpper>
+  );
 };
 
 export default Details;
