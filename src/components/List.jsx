@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React from "react";
 import styled from "styled-components";
 import ListItem from "./ListItem";
 
@@ -9,10 +9,10 @@ const List = ({ filteredData, onClickNavHandler }) => {
         <ListItem
           key={item.id}
           time={item.time}
-          eventName={item.eventName}
+          eventname={item.eventname}
           start={item.start}
           end={item.end}
-          circleColor={item.circleColor}
+          color={item.color}
           todoId={item.id}
           onDelete={handleDelete}
           onClick={() => onClickNavHandler(item.id)}
