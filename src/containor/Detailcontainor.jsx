@@ -34,7 +34,15 @@ function Detailcontainor() {
 
   const onInputChange = (e) => {
     const name = e.target.name;
-    const value = e.target.value;
+    let value = e.target.value;
+
+    if (name === "updatedStart") {
+      value = Math.min(value, 24);
+    }
+
+    if (name === "updatedEnd") {
+      value = Math.min(value, 24);
+    }
 
     switch (name) {
       case "updatedeventname":
