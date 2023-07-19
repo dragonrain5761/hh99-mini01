@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Detail from "../assets/images/detail.png";
-import Button from "../components/common/Button";
 const Details = ({
   info,
   handleDelete,
