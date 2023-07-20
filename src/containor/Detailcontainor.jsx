@@ -27,41 +27,13 @@ function Detailcontainor() {
     navigate("/");
   };
 
-  const [updatedEventname, setUpdatedEventname] = useState("");
-  const [updatedStart, setUpdatedStart] = useState("");
-  const [updatedEnd, setUpdatedEnd] = useState("");
-  const [updatedColor, setUpdatedColor] = useState("");
-
-  const onInputChange = (e) => {
-    const name = e.target.name;
-    let value = e.target.value;
-
-    if (name === "updatedStart") {
-      value = Math.min(value, 24);
-    }
-
-    if (name === "updatedEnd") {
-      value = Math.min(value, 24);
-    }
-
-    switch (name) {
-      case "updatedEventname":
-        setUpdatedEventname(value);
-        break;
-      case "updatedStart":
-        setUpdatedStart(value);
-        break;
-      case "updatedEnd":
-        setUpdatedEnd(value);
-        break;
-      case "updatedColor":
-        setUpdatedColor(value);
-        break;
-      default:
-        break;
-    }
-  };
-
+  const [detailForm, onInputChange] = useInput({
+    updatedeventname: "",
+    updatedStart: "",
+    updatedEnd: "",
+    updatedcolor: "red",
+  });
+  // console.log(detailForm);
   const onClickUpdateHandler = () => {
     if (
       detailForm.updatedeventname === "" ||
@@ -79,10 +51,10 @@ function Detailcontainor() {
 
     const updatedInfo = {
       ...info,
-      eventname: updatedEventname,
-      start: updatedStart,
-      end: updatedEnd,
-      color: updatedColor,
+      eventname: detailForm.updatedeventname,
+      start: detailForm.updatedStart,
+      end: detailForm.updatedEnd,
+      color: detailForm.updatedcolor,
     };
     handleUpdate(updatedInfo);
   };
@@ -104,12 +76,10 @@ function Detailcontainor() {
     <Details
       info={info}
       handleDelete={handleDelete}
-      updatedEventname={updatedEventname}
-      updatedStart={updatedStart}
-      updatedEnd={updatedEnd}
-      updatedColor={updatedColor}
       onInputChange={onInputChange}
       onClickUpdateHandler={onClickUpdateHandler}
+      detailForm={detailForm}
+      navigate={navigate}
     ></Details>
   );
 }
