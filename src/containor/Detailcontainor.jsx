@@ -3,10 +3,11 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getTodo, deleteTodo, updateTodo } from "../apis/api";
 import { useMutation, useQueryClient } from "react-query";
 import Details from "../components/Details";
+import useInput from "../hooks/useInput";
 
 function Detailcontainor() {
   const { id } = useParams();
-  const [info, setInfo] = useState(null);
+  const [info, setInfo] = useState({});
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
@@ -38,37 +39,36 @@ function Detailcontainor() {
 
     if (name === "updatedStart") {
       value = Math.min(value, 24);
+  const [detailForm, onInputChange] = useInput({
+    updatedeventname: "",
+    updatedStart: "",
+    updatedEnd: "",
+    updatedcolor: "red",
+  });
+  // console.log(detailForm);
+  const onClickUpdateHandler = () => {
+    if (
+      detailForm.updatedeventname === "" ||
+      detailForm.updatedStart === "" ||
+      detailForm.updatedEnd === ""
+    ) {
+      return alert("모두 입력해주세요~");
     }
 
     if (name === "updatedEnd") {
       value = Math.min(value, 24);
     }
 
-    switch (name) {
-      case "updatedeventname":
-        setUpdatedeventname(value);
-        break;
-      case "updatedStart":
-        setUpdatedStart(value);
-        break;
-      case "updatedEnd":
-        setUpdatedEnd(value);
-        break;
-      case "updatedcolor":
-        setUpdatedcolor(value);
-        break;
-      default:
-        break;
-    }
-  };
-
-  const onClickUpdateHandler = () => {
     const updatedInfo = {
       ...info,
       eventname: updatedeventname,
       start: updatedStart,
       end: updatedEnd,
       color: updatedcolor,
+      eventname: detailForm.updatedeventname,
+      start: detailForm.updatedStart,
+      end: detailForm.updatedEnd,
+      color: detailForm.updatedcolor,
     };
     handleUpdate(updatedInfo);
   };
@@ -95,6 +95,8 @@ function Detailcontainor() {
       updatedcolor={updatedcolor}
       onInputChange={onInputChange}
       onClickUpdateHandler={onClickUpdateHandler}
+      detailForm={detailForm}
+      navigate={navigate}
     ></Details>
   );
 }
