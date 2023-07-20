@@ -14,8 +14,9 @@ const List = ({ filteredData, onClickNavHandler }) => {
           end={item.end}
           color={item.color}
           todoId={item.id}
+          onDelete={handleDelete}
           onClick={() => onClickNavHandler(item.id)}
-        />
+        ></ListItem>
       ))}
     </ListWrapper>
   );
