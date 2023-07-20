@@ -39,30 +39,13 @@ function Detailcontainor() {
 
     if (name === "updatedStart") {
       value = Math.min(value, 24);
-    }
-
-    if (name === "updatedEnd") {
-      value = Math.min(value, 24);
-    }
-
-    switch (name) {
-      case "updatedeventname":
-        setUpdatedeventname(value);
-        break;
-      case "updatedStart":
-        setUpdatedStart(value);
-        break;
-      case "updatedEnd":
-        setUpdatedEnd(value);
-        break;
-      case "updatedcolor":
-        setUpdatedcolor(value);
-        break;
-      default:
-        break;
-    }
-  };
-
+  const [detailForm, onInputChange] = useInput({
+    updatedeventname: "",
+    updatedStart: "",
+    updatedEnd: "",
+    updatedcolor: "red",
+  });
+  // console.log(detailForm);
   const onClickUpdateHandler = () => {
     if (
       detailForm.updatedeventname === "" ||
@@ -71,15 +54,17 @@ function Detailcontainor() {
     ) {
       return alert("모두 입력해주세요~");
     }
-    if (
-      detailForm.updatedStart > detailForm.updatedEnd ||
-      24 < detailForm.updatedEnd
-    ) {
-      return alert("시간 확인해주세요~");
+
+    if (name === "updatedEnd") {
+      value = Math.min(value, 24);
     }
 
     const updatedInfo = {
       ...info,
+      eventname: updatedeventname,
+      start: updatedStart,
+      end: updatedEnd,
+      color: updatedcolor,
       eventname: detailForm.updatedeventname,
       start: detailForm.updatedStart,
       end: detailForm.updatedEnd,

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { format } from "date-fns";
 import img from "../assets/images/calender.png";
@@ -14,7 +14,7 @@ const Calendar = ({ currentMonth, month, prevMonth, nextMonth }) => {
         <Header>
           <div>
             <CalendarHeader>
-              {format(currentMonth, "yyyy")} {format(currentMonth, "M")}월
+              {format(currentMonth, "yyyy")}년 {format(currentMonth, "M")}월
             </CalendarHeader>
           </div>
           <div>
