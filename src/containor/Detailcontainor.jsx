@@ -71,10 +71,10 @@ function Detailcontainor() {
 
     const updatedInfo = {
       ...info,
-      eventname: updatedEventname,
-      start: updatedStart,
-      end: updatedEnd,
-      color: updatedColor,
+      eventname: detailForm.updatedeventname,
+      start: detailForm.updatedStart,
+      end: detailForm.updatedEnd,
+      color: detailForm.updatedcolor,
     };
     handleUpdate(updatedInfo);
   };
@@ -96,12 +96,10 @@ function Detailcontainor() {
     <Details
       info={info}
       handleDelete={handleDelete}
-      updatedEventname={updatedEventname}
-      updatedStart={updatedStart}
-      updatedEnd={updatedEnd}
-      updatedColor={updatedColor}
       onInputChange={onInputChange}
       onClickUpdateHandler={onClickUpdateHandler}
+      detailForm={detailForm}
+      navigate={navigate}
     ></Details>
   );
 }
