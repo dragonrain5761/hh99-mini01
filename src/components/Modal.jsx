@@ -1,83 +1,32 @@
-import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import Button from "./common/Button";
-import { toogleModal } from "../redux/modules/modal";
 import Selecter from "./common/Selector";
-import { QueryClient, useMutation, useQueryClient } from "react-query";
-import { addTodo } from "../apis/api";
-import { useEffect, useState } from "react";
 
-const Modal = () => {
-  const { modalChecked, date, circleColor } = useSelector(
-    (state) => state.modal
-  );
-
-  const [todo, setTodo] = useState({
-    eventName: "",
-    start: "",
-    end: "",
-    date,
-    circleColor,
-  });
-  const onChangeTodosHandler = (e) => {
-    const { name, value } = e.target;
-    let newValue = value;
-    name !== "eventName" && (newValue = value.replace(/\D/g, ""));
-    const newTodo = {
-      ...todo,
-      [name]: newValue,
-    };
-    setTodo(newTodo);
-  };
-
-  useEffect(() => {
-    let newColor = {
-      ...todo,
-      circleColor,
-    };
-    setTodo(newColor);
-  }, [circleColor]);
-  const dispatch = useDispatch();
-  const queryClient = useQueryClient();
-
-  const mutation = useMutation(addTodo, {
-    onSuccess: () => {
-      queryClient.invalidateQueries("todos");
-    },
-  });
-
-  const onClickModalHandler = () => {
-    dispatch(toogleModal());
-  };
-
-  const onClickSubmitHandler = () => {
-    mutation.mutate(todo);
-    dispatch(toogleModal());
-    setTodo({
-      eventName: "",
-      start: "",
-      end: "",
-      date,
-      circleColor: "red",
-    });
-  };
-
+const Modal = ({
+  modalChecked,
+  onChangeTodosHandler,
+  onClickModalHandler,
+  onClickSubmitHandler,
+  color,
+  date,
+  todo,
+}) => {
   return (
     <>
       {modalChecked && (
         <>
-          <ModalContent $circleColor={circleColor}>
+          <ModalContent $color={color}>
             <span>할 일</span>
             {/* css가 undefined가 뜨는데 왜일까? */}
             <div className="circle" />
             <p className="date">날짜 : {date}</p>
-            <p className="count">{todo.eventName.length}/20</p>
+            <p className="count">{todo.eventname.length}/20</p>
             <InputBox
               type="text"
               maxLength={19}
               width={220}
-              name="eventName"
-              value={todo.eventName}
+              name="eventname"
+              value={todo.eventname}
               onChange={(e) => onChangeTodosHandler(e)}
             />
             <Selecter />
@@ -91,15 +40,6 @@ const Modal = () => {
                     value={todo.start}
                     onChange={(e) => onChangeTodosHandler(e)}
                   />
-                  {/* <span
-                    onClick={(e) => {
-                      e.target.innerText === "PM"
-                        ? (e.target.innerText = "AM")
-                        : (e.target.innerText = "PM");
-                    }}
-                  >
-                    PM
-                  </span> */}
                 </div>
               </div>
               <span>~</span>
@@ -112,15 +52,6 @@ const Modal = () => {
                     value={todo.end}
                     onChange={(e) => onChangeTodosHandler(e)}
                   />
-                  {/* <span
-                    onClick={(e) => {
-                      e.target.innerText === "PM"
-                        ? (e.target.innerText = "AM")
-                        : (e.target.innerText = "PM");
-                    }}
-                  >
-                    PM
-                  </span> */}
                 </div>
               </div>
             </ClockWrapper>
@@ -181,7 +112,7 @@ const ModalContent = styled.div`
     top: 9%;
     width: 20px;
     height: 20px;
-    background-color: ${(props) => props.$circleColor};
+    background-color: ${(props) => props.$color};
     border-radius: 100%;
     border: 1px solid black;
   }
@@ -206,9 +137,6 @@ const ModalContent = styled.div`
     left: 65%;
     top: 0;
   }
-  > input {
-  }
-
   > span {
     margin-right: auto;
     margin-left: 10px;

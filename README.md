@@ -1,71 +1,53 @@
-# Getting Started with Create React App
+# :canoe: 항해 미니 프로젝트 - 17조
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+옆집꼬마가 만들어준 달력이야
+<br><br/>
 
-## Available Scripts
+## :watch: 프로젝트 기간
 
-In the project directory, you can run:
+- 2023년 07월 14일 ~ 2023년 07월 20일
+  <br><br/>
 
-### `yarn start`
+## :smirk_cat: 팀원
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+FE : 강신범, 이용우
+<br><br/>
+BE : 손정혁, 윤성혁
+<br><br/>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## :desktop_computer: 프로젝트 소개
 
-### `yarn test`
+- 한줄 설명 : 달력을 기반으로 한 일정 관리 서비스
+  <br><br/>
+- 프로젝트 관련 주소
+  > 프로젝트 노션
+- [17조 노션](https://deep-sign-d9d.notion.site/S-A-355604e3cfd74de986fab5d7aa6e4c7d)
+  <br><br/>
+  > github 주소
+- FE : https://github.com/kangsinbeom/hh99-mini01
+- BE : https://github.com/yun-seonghyuk/miniproject
+  <br><br/>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## :pushpin: preview
 
-### `yarn build`
+> Home && ( + 반응형)
+> <img width="508" alt="main" src="https://github.com/kangsinbeom/hh99-mini01/assets/83047601/2cd10265-6f6f-4279-bc91-67559b39f34a">
+> <br><br/>
+> <img width="356" alt="화면 캡처 2023-07-20 134450" src="https://github.com/kangsinbeom/hh99-mini01/assets/83047601/20011895-5b53-4d56-a6c6-a9833907be83">
+> <br><br/>
+> <br><br/>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+> AddPost
+> <img width="482" alt="modal" src="https://github.com/kangsinbeom/hh99-mini01/assets/83047601/4daeed01-422e-4f03-8a7e-396bf12e5498">
+> <br><br/>
+> <br><br/>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+> Detail
+> <img width="319" alt="detail" src="https://github.com/kangsinbeom/hh99-mini01/assets/83047601/522cadfd-4259-4369-9823-143acba4b1b1">
+> <br><br/>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## :mag_right: 관련기술
 
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configurationdd
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-z
+FE : date-fns (시간 관련 라이브러리), react-query (비동기 통신 데이터 관리), redux-toolkit (전역상태관리), styled-component (CSS관련 라이브러리), aixos (통신)
+<br><br/>
+BE : -

@@ -1,11 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import Button from "../components/common/Button";
 
-const ListItem = ({ start, end, eventName, circleColor, onClick }) => {
+const ListItem = ({ start, end, eventname, color, onClick }) => {
   return (
-    <ListItmeBox color={circleColor} onClick={onClick}>
-      <div>{eventName}</div>
+    <ListItmeBox color={color} onClick={onClick}>
+      <div>{eventname}</div>
       <div>
         {start}시 - {end}시
       </div>
@@ -31,5 +30,14 @@ const ListItmeBox = styled.div`
     cursor: pointer;
     font-size: 23px;
     background-color: #dad8d8;
+  }
+
+  @media (max-width: 900px) {
+    font-size: 17px;
+    width: 100px;
+    margin: 15px;
+    &:hover {
+      font-size: 18px;
+    }
   }
 `;

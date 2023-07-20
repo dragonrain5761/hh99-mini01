@@ -5,8 +5,7 @@ const store = configureStore({
   reducer: {
     calendar,
     modal,
-  }
+  },
 });
-
 
 export default store;

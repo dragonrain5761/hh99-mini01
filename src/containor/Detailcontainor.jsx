@@ -3,10 +3,11 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getTodo, deleteTodo, updateTodo } from "../apis/api";
 import { useMutation, useQueryClient } from "react-query";
 import Details from "../components/Details";
+import useInput from "../hooks/useInput";
 
 function Detailcontainor() {
   const { id } = useParams();
-  const [info, setInfo] = useState(null);
+  const [info, setInfo] = useState({});
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
@@ -22,44 +23,38 @@ function Detailcontainor() {
   };
 
   const handleUpdate = async (updatedTodo) => {
-    await updateTodo(id, updatedTodo); // updateTodo 함수를 사용하여 업데이트 수행
-    navigate("/"); // 업데이트 후 메인 페이지로 이동
+    await updateTodo(id, updatedTodo);
+    navigate("/");
   };
 
-  const [updatedEventName, setUpdatedEventName] = useState("");
-  const [updatedStart, setUpdatedStart] = useState("");
-  const [updatedEnd, setUpdatedEnd] = useState("");
-  const [updatedCircleColor, setUpdatedCircleColor] = useState("");
-
-  const onInputChange = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-
-    switch (name) {
-      case "updatedEventName":
-        setUpdatedEventName(value);
-        break;
-      case "updatedStart":
-        setUpdatedStart(value);
-        break;
-      case "updatedEnd":
-        setUpdatedEnd(value);
-        break;
-      case "updatedCircleColor":
-        setUpdatedCircleColor(value);
-        break;
-      default:
-        break;
-    }
-  };
-
+  const [detailForm, onInputChange] = useInput({
+    updatedeventname: "",
+    updatedStart: "",
+    updatedEnd: "",
+    updatedcolor: "red",
+  });
+  // console.log(detailForm);
   const onClickUpdateHandler = () => {
+    if (
+      detailForm.updatedeventname === "" ||
+      detailForm.updatedStart === "" ||
+      detailForm.updatedEnd === ""
+    ) {
+      return alert("모두 입력해주세요~");
+    }
+    if (
+      detailForm.updatedStart > detailForm.updatedEnd ||
+      24 < detailForm.updatedEnd
+    ) {
+      return alert("시간 확인해주세요~");
+    }
+
     const updatedInfo = {
       ...info,
-      eventName: updatedEventName,
-      start: updatedStart,
-      end: updatedEnd,
-      circleColor: updatedCircleColor,
+      eventname: detailForm.updatedeventname,
+      start: detailForm.updatedStart,
+      end: detailForm.updatedEnd,
+      color: detailForm.updatedcolor,
     };
     handleUpdate(updatedInfo);
   };
@@ -80,12 +75,10 @@ function Detailcontainor() {
     <Details
       info={info}
       handleDelete={handleDelete}
-      updatedEventName={updatedEventName}
-      updatedStart={updatedStart}
-      updatedEnd={updatedEnd}
-      updatedCircleColor={updatedCircleColor}
       onInputChange={onInputChange}
       onClickUpdateHandler={onClickUpdateHandler}
+      detailForm={detailForm}
+      navigate={navigate}
     ></Details>
   );
 }
