@@ -8,7 +8,9 @@ const instance = axios.create({
 });
 
 const getTodos = async () => {
+
   const response = await instance.get("/api/memo");
+
   return response.data;
 };
 
@@ -18,12 +20,16 @@ const addTodo = async (newTodo) => {
 };
 
 const deleteTodo = async (id) => {
+
   const response = await instance.delete(`/api/memo/${id}`);
+
   return response.data;
 };
 
 const updateTodo = async (id, updatedTodo) => {
+
   const response = await instance.put(`/api/memo/${id}`, updatedTodo);
+
   return response.data;
 };
 
