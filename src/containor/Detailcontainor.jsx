@@ -62,15 +62,17 @@ function Detailcontainor() {
     ) {
       return alert("모두 입력해주세요~");
     }
-    if (
-      detailForm.updatedStart > detailForm.updatedEnd ||
-      24 < detailForm.updatedEnd
-    ) {
-      return alert("시간 확인해주세요~");
+
+    if (name === "updatedEnd") {
+      value = Math.min(value, 24);
     }
 
     const updatedInfo = {
       ...info,
+      eventname: updatedeventname,
+      start: updatedStart,
+      end: updatedEnd,
+      color: updatedcolor,
       eventname: detailForm.updatedeventname,
       start: detailForm.updatedStart,
       end: detailForm.updatedEnd,
