@@ -27,80 +27,60 @@ function Detailcontainor() {
     navigate("/");
   };
 
-  const [updatedeventname, setUpdatedeventname] = useState("");
-
-  const [updatedStart, setUpdatedStart] = useState("");
-  const [updatedEnd, setUpdatedEnd] = useState("");
-  const [updatedcolor, setUpdatedcolor] = useState("");
-
-  const onInputChange = (e) => {
-    const name = e.target.name;
-    let value = e.target.value;
-
-    if (name === "updatedStart") {
-      value = Math.min(value, 24);
-      const [detailForm, onInputChange] = useInput({
-        updatedeventname: "",
-        updatedStart: "",
-        updatedEnd: "",
-        updatedcolor: "red",
-      });
-      // console.log(detailForm);
-      const onClickUpdateHandler = () => {
-        if (
-          detailForm.updatedeventname === "" ||
-          detailForm.updatedStart === "" ||
-          detailForm.updatedEnd === ""
-        ) {
-          return alert("모두 입력해주세요~");
-        }
-
-        if (name === "updatedEnd") {
-          value = Math.min(value, 24);
-        }
-
-        const updatedInfo = {
-          ...info,
-          eventname: updatedeventname,
-          start: updatedStart,
-          end: updatedEnd,
-          color: updatedcolor,
-          eventname: detailForm.updatedeventname,
-          start: detailForm.updatedStart,
-          end: detailForm.updatedEnd,
-          color: detailForm.updatedcolor,
-        };
-        handleUpdate(updatedInfo);
-      };
-
-      useEffect(() => {
-        const fetchInfo = async () => {
-          const response = await getTodo(id);
-          setInfo(...response);
-        };
-        fetchInfo();
-      }, [id]);
-
-      if (!info) {
-        return <div> 아직 로딩중입니다...</div>;
-      }
-
-      return (
-        <Details
-          info={info}
-          handleDelete={handleDelete}
-          updatedeventname={updatedeventname}
-          updatedStart={updatedStart}
-          updatedEnd={updatedEnd}
-          updatedcolor={updatedcolor}
-          onInputChange={onInputChange}
-          onClickUpdateHandler={onClickUpdateHandler}
-          detailForm={detailForm}
-          navigate={navigate}
-        ></Details>
-      );
+  const [detailForm, onInputChange] = useInput({
+    updatedeventname: "",
+    updatedStart: "",
+    updatedEnd: "",
+    updatedcolor: "red",
+  });
+  // console.log(detailForm);
+  const onClickUpdateHandler = () => {
+    if (
+      detailForm.updatedeventname === "" ||
+      detailForm.updatedStart === "" ||
+      detailForm.updatedEnd === ""
+    ) {
+      return alert("모두 입력해주세요~");
     }
+    if (
+      detailForm.updatedStart > detailForm.updatedEnd ||
+      24 < detailForm.updatedEnd
+    ) {
+      return alert("시간 확인해주세요~");
+    }
+
+    const updatedInfo = {
+      ...info,
+      eventname: detailForm.updatedeventname,
+      start: detailForm.updatedStart,
+      end: detailForm.updatedEnd,
+      color: detailForm.updatedcolor,
+    };
+    handleUpdate(updatedInfo);
   };
+
+  useEffect(() => {
+    const fetchInfo = async () => {
+      const response = await getTodo(id);
+      setInfo(...response);
+    };
+    fetchInfo();
+  }, [id]);
+
+  if (!info) {
+    return <div> 아직 로딩중입니다...</div>;
+  }
+
+  return (
+    <Details
+      info={info}
+      handleDelete={handleDelete}
+      onInputChange={onInputChange}
+      onClickUpdateHandler={onClickUpdateHandler}
+      detailForm={detailForm}
+      navigate={navigate}
+    ></Details>
+  );
 }
 
 export default Detailcontainor;

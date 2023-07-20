@@ -5,63 +5,115 @@ import Button from "../components/common/Button";
 const Details = ({
   info,
   handleDelete,
-  updatedeventname,
-  updatedStart,
-  updatedEnd,
-  updatedColor,
+  detailForm,
   onInputChange,
   onClickUpdateHandler,
   navigate,
 }) => {
-  const { eventname, start, end, color } = info;
-  console.log(info);
+  const { eventname, start, end, color, date } = info;
+  const [detailToggle, setDetailToggle] = useState(false);
+  const onToggleDetailHandler = () => {
+    setDetailToggle((prev) => !prev);
+  };
+
   return (
-    <DetailWarpper img={Detail}>
-      <input type="text" />
-      <textarea type="text" name="inputcontent" maxLength={600} />
-      <h1>Detail Page</h1>
-      <div>
-        <p>Event Name: {eventname}</p>
-        <input
-          type="text"
-          name="updatedeventname"
-          value={updatedeventname}
-          onChange={onInputChange}
-        />
-        <p>Start Time: {start}시</p>
-        <input
-          type="number"
-          name="updatedStart"
-          value={updatedStart}
-          onChange={onInputChange}
-          min="0"
-          max="24"
-        />
-        <p>End Time: {end}시</p>
-        <input
-          type="number"
-          name="updatedEnd"
-          value={updatedEnd}
-          onChange={onInputChange}
-          min="0"
-          max="24"
-        />
-        <p>Color: {color}</p>
-        <select
-          name="updatedcolor"
-          value={updatedcolor}
-          onChange={onInputChange}
-        >
-          <option value="red">red</option>
-          <option value="yellow">yellow</option>
-          <option value="blue">blue</option>
-          <option value="violet">violet</option>
-        </select>
-      </div>
-      <button onClick={onClickUpdateHandler}>수정</button>
-      &nbsp;
-      <button onClick={handleDelete}>삭제</button>
-    </DetailWarpper>
+    <>
+      {detailToggle ? (
+        <DetailWarpper $img={Detail}>
+          <div className="header">
+            <p>{date}</p>
+            <div className="close" onClick={() => navigate("/")}>
+              x
+            </div>
+          </div>
+          <h1>Detail Page</h1>
+          <DetailName>
+            <p>Event:</p>
+            <input
+              type="text"
+              className="updatedeventname"
+              value={detailForm.updatedeventname}
+              onChange={(e) => onInputChange(e)}
+              maxLength={20}
+            />
+          </DetailName>
+          <DetailTime>
+            <p>Time: </p>
+            <input
+              className="updatedStart"
+              value={detailForm.updatedStart}
+              onChange={(e) => onInputChange(e)}
+              maxLength={2}
+            />
+            -
+            <input
+              type="number"
+              className="updatedEnd"
+              value={detailForm.updatedEnd}
+              onChange={(e) => onInputChange(e)}
+              maxLength={2}
+            />
+          </DetailTime>
+          <DetailColor>
+            <p>Color: </p>
+            <select
+              className="updatedcolor"
+              name="updatedcolor"
+              value={detailForm.updatedcolor}
+              onChange={(e) => onInputChange(e)}
+            >
+              <option value="red">red</option>
+              <option value="yellow">yellow</option>
+              <option value="blue">blue</option>
+              <option value="violet">violet</option>
+            </select>
+          </DetailColor>
+          <ButtonBox>
+            &nbsp;
+            <Button width={100} onClick={onClickUpdateHandler}>
+              완료
+            </Button>
+            &nbsp;
+            <Button width={100} onClick={onToggleDetailHandler}>
+              취소
+            </Button>
+          </ButtonBox>
+        </DetailWarpper>
+      ) : (
+        <DetailWarpper $img={Detail}>
+          <div className="header">
+            <p>{date}</p>
+            <div className="close" onClick={() => navigate("/")}>
+              x
+            </div>
+          </div>
+          <h1>Detail Page</h1>
+
+          <DetailName>
+            <p>Event: </p>
+            <span>{eventname}</span>
+          </DetailName>
+          <DetailTime>
+            <p>Time: </p>
+            <span>{start} 시</span>-<span>{end} 시</span>
+          </DetailTime>
+          <DetailColor>
+            <p>Color: </p>
+            <span>{color}</span>
+          </DetailColor>
+          <ButtonBox>
+            &nbsp;
+            <Button width={100} onClick={onToggleDetailHandler}>
+              수정
+            </Button>
+            &nbsp;
+            <Button width={100} onClick={handleDelete}>
+              삭제
+            </Button>
+          </ButtonBox>
+        </DetailWarpper>
+      )}
+    </>
   );
 };
 

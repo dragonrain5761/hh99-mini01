@@ -4,10 +4,14 @@ const useInput = (initialState) => {
   const [form, setForm] = useState(initialState);
 
   const onChangeInputHandler = (event) => {
-    const { name, vlaue } = event.target;
+    // console.log(event)
+    const { className, value } = event.target;
+    let newValue = value;
+    (className === "updatedStart" || className === "updatedEnd") &&
+      (newValue = value.replace(/\D/g, ""));
     const newForm = {
       ...form,
-      [name]: vlaue,
+      [className]: newValue,
     };
     setForm(newForm);
   };
